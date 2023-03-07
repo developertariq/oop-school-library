@@ -19,6 +19,7 @@
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
+    - [Run tests](#run-tests)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -106,6 +107,15 @@ Clone this repository to your desired folder:
   cd my-folder
   git clone https://github.com/developertariq/oop-school-library.git
 
+```
+### Run tests
+
+To run tests, run the following command:
+
+```sh
+  cd my-project
+  bundle i
+  ruby person.rb
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
