@@ -1,13 +1,18 @@
 class Student < Person
   attr_accessor :classroom
-  
-  def initialize( age, name = "Unknown", parent_permission = true, classroom = nil)
+
+  def initialize(age, name = 'Unknown', parent_permission: true, classroom: nil)
     super(age, name, parent_permission)
     @classroom = classroom
-    classroom.add_student(self) if classroom
+    classroom&.add_student(self)
   end
-  
+
+  def add_classroom(classroom)
+    @classroom = classroom
+    classroom.add_student(self)
+  end
+
   def play_hooky
-    "¯\\_(ツ)_/¯"
+    '¯\\_(ツ)_/¯'
   end
 end
