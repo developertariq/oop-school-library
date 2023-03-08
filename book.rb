@@ -5,5 +5,5 @@ class Book
     @title = title
     @author = author
     @rentals = []
-  end 
+  end
 end
