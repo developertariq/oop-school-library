@@ -11,52 +11,6 @@ class App
     @rentals = []
   end
 
-  def run
-    puts "\e[32mWelcome to School Library App!\e[0m"
-    loop do
-      puts "\n\e[32mPlease choose an option by entering a number: \e[0m"
-      puts '1. List all books'
-      puts '2. List all people'
-      puts '3. Create a person'
-      puts '4. Create a book'
-      puts '5. Create a rental'
-      puts '6. List all rentals for a given person id'
-      puts '7. Exit'
-
-      input = gets.chomp.to_i
-
-      run_option(input)
-    end
-  end
-
-  private
-
-  def run_option(input)
-    @options = {
-      1 => method(:list_books),
-      2 => method(:list_people),
-      3 => method(:create_person),
-      4 => method(:create_book),
-      5 => method(:create_rental),
-      6 => method(:list_rentals_for_person),
-      7 => method(:exit_app)
-    }
-
-    option = @options[input]
-
-    if option
-      option.call
-    else
-      puts "\e[31mInvalid option. Please try again.\e[0m"
-    end
-  end
-
-  def exit_app
-    puts "\e[32mThank you for using this app!\e[0m"
-    sleep(1)
-    exit
-  end
-
   def list_books
     if @books.empty?
       puts "\e[31mNo books in the library yet.\e[0m"
@@ -79,9 +33,7 @@ class App
 
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
-
     type = gets.chomp.to_i
-
     case type
     when 1
       create_student
@@ -117,10 +69,8 @@ class App
   def create_book
     print 'Enter the title of the book: '
     title = gets.chomp
-
     print 'Enter the author of the book: '
     author = gets.chomp
-
     @books << Book.new(title, author)
     puts 'Book created successfully.'
   end
@@ -130,15 +80,11 @@ class App
       puts "\e[31mNo books or people in the library yet.\e[0m"
       return
     end
-
     book = select_book
-
     person = select_person
-
     if person && book
       print 'Date: '
       date = gets.chomp.to_s
-
       @rentals << Rental.new(date, book, person)
       puts 'Rental created successfully.'
     else
@@ -167,9 +113,7 @@ class App
   def list_rentals_for_person
     print 'ID of person: '
     person_id = gets.chomp.to_i
-
     rentals = @rentals.select { |r| r.person.id == person_id }
-
     if rentals.empty?
       puts "\e[31mNo rentals found for this person. Please try again.\e[0m"
     else
