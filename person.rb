@@ -6,7 +6,7 @@ class Person < Nameable
   attr_accessor :name, :age, :rentals
   attr_reader :id
 
-  def initialize(age, name = 'Unknown', parent_permission: true)
+  def initialize(age, name = 'Unknown', parent_permission = true)
     super()
     @id = generate_id
     @name = name
@@ -35,6 +35,6 @@ class Person < Nameable
   end
 
   def generate_id
-    rand(1000..9999)
+    rand(100..999)
   end
 end
