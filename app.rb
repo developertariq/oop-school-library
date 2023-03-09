@@ -24,7 +24,7 @@ class App
       puts '7. Exit'
 
       input = gets.chomp.to_i
-      
+
       run_option(input)
     end
   end
@@ -42,7 +42,7 @@ class App
       7 => method(:exit_app)
     }
 
-    option = @options[input] 
+    option = @options[input]
 
     if option
       option.call
