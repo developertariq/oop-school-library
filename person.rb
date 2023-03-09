@@ -35,6 +35,6 @@ class Person < Nameable
   end
 
   def generate_id
-    rand(1000..9999)
+    rand(100..999)
   end
 end
