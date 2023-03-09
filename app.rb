@@ -24,31 +24,38 @@ class App
       puts '7. Exit'
 
       input = gets.chomp.to_i
-
-      case input
-      when 1
-        list_books
-      when 2
-        list_people
-      when 3
-        create_person
-      when 4
-        create_book
-      when 5
-        create_rental
-      when 6
-        list_rentals_for_person
-      when 7
-        puts "\e[32mThank you for using this app!\e[0m"
-        sleep(1)
-        exit
-      else
-        puts "\e[31mInvalid input. Please try again.\e[0m"
-      end
+      
+      run_option(input)
     end
   end
 
   private
+
+  def run_option(input)
+    @options = {
+      1 => method(:list_books),
+      2 => method(:list_people),
+      3 => method(:create_person),
+      4 => method(:create_book),
+      5 => method(:create_rental),
+      6 => method(:list_rentals_for_person),
+      7 => method(:exit_app)
+    }
+
+    option = @options[input] 
+
+    if option
+      option.call
+    else
+      puts "\e[31mInvalid option. Please try again.\e[0m"
+    end
+  end
+
+  def exit_app
+    puts "\e[32mThank you for using this app!\e[0m"
+    sleep(1)
+    exit
+  end
 
   def list_books
     if @books.empty?
@@ -77,27 +84,34 @@ class App
 
     case type
     when 1
-      print 'Age: '
-      age = gets.chomp.to_i
-      print 'Name: '
-      name = gets.chomp.to_s
-      print 'Has parent permission? [Y/N] '
-      permission = gets.chomp.downcase == 'y'
-      @people << Student.new(age, name, permission)
-     
-      puts 'Person created successfully.'
+      create_student
     when 2
-      print 'Age: '
-      age = gets.chomp.to_i
-      print 'Name: '
-      name = gets.chomp.to_s
-      print 'Specialization: '
-      specialization = gets.chomp.to_s
-      @people << Teacher.new(age, name, specialization)
-      print 'Person created successfully.'
+      create_teacher
     else
       puts "\e[31mInvalid input. Please try again.\e[0m"
     end
+  end
+
+  def create_student
+    print 'Age: '
+    age = gets.chomp.to_i
+    print 'Name: '
+    name = gets.chomp.to_s
+    print 'Has parent permission? [Y/N] '
+    permission = gets.chomp.downcase == 'y'
+    @people << Student.new(age, name, parent_permission: permission)
+    puts 'Person created successfully.'
+  end
+
+  def create_teacher
+    print 'Age: '
+    age = gets.chomp.to_i
+    print 'Name: '
+    name = gets.chomp.to_s
+    print 'Specialization: '
+    specialization = gets.chomp.to_s
+    @people << Teacher.new(age, name, specialization: specialization)
+    puts 'Person created successfully.'
   end
 
   def create_book
@@ -108,7 +122,7 @@ class App
     author = gets.chomp
 
     @books << Book.new(title, author)
-    puts "Book created successfully."
+    puts 'Book created successfully.'
   end
 
   def create_rental
@@ -117,22 +131,12 @@ class App
       return
     end
 
-    puts 'Select a book from the following list by number ' 
-    @books.each_with_index do |book, index|
-      puts "\e[34m#{index + 1}. Title: \"#{book.title}\", Author: #{book.author} \e[0m"
-    end
-    book_idx = gets.chomp.to_i - 1
-    book = @books[book_idx]
+    book = select_book
 
-    puts 'Select a person from the following list by number (not id) '
-    @people.each_with_index do |person, index|
-      puts "\e[34m#{index + 1}. [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age} \e[0m"
-    end
-    person_idx = gets.chomp.to_i - 1
-    person = @people[person_idx]
+    person = select_person
 
     if person && book
-      print 'Date: ' 
+      print 'Date: '
       date = gets.chomp.to_s
 
       @rentals << Rental.new(date, book, person)
@@ -140,6 +144,24 @@ class App
     else
       puts "\e[31mInvalid person or book selected. Please try again.\e[0m"
     end
+  end
+
+  def select_book
+    puts 'Select a book from the following list by number '
+    @books.each_with_index do |book, index|
+      puts "\e[34m#{index + 1}. Title: \"#{book.title}\", Author: #{book.author} \e[0m"
+    end
+    book_idx = gets.chomp.to_i - 1
+    @books[book_idx]
+  end
+
+  def select_person
+    puts 'Select a person from the following list by number (not id) '
+    @people.each_with_index do |person, index|
+      puts "\e[34m#{index + 1}. [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age} \e[0m"
+    end
+    person_idx = gets.chomp.to_i - 1
+    @people[person_idx]
   end
 
   def list_rentals_for_person
