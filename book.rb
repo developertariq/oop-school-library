@@ -1,3 +1,6 @@
+require_relative './rental'
+require 'json'
+
 class Book
   attr_accessor :title, :author, :rentals
 
@@ -10,5 +13,9 @@ class Book
   def add_rental(date, person)
     rental = Rental.new(date, self, person)
     @rentals << rental
+  end
+
+  def create_object
+    { title: @title, author: @author }
   end
 end
