@@ -7,7 +7,7 @@ class People
     print 'Has parent permission? [Y/N] '
     permission = gets.chomp.downcase == 'y'
     people << Student.new(age, name, parent_permission: permission)
-    
+
     puts 'Person created successfully.'
   end
 
@@ -19,7 +19,7 @@ class People
     print 'Specialization: '
     specialization = gets.chomp.to_s
     people << Teacher.new(age, name, specialization: specialization)
-    
+
     puts 'Person created successfully.'
   end
 

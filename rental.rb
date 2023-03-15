@@ -15,8 +15,8 @@ class Rental
 
   def create_object
     object_data = {}
-    object_data[:book] = {title: @book.title, author: @book.author}
-    object_data[:person] = {id: @person.id, age: @person.age, name: @person.name, class: @person.class}
+    object_data[:book] = { title: @book.title, author: @book.author }
+    object_data[:person] = { id: @person.id, age: @person.age, name: @person.name, class: @person.class }
     object_data[:date] = @date
     object_data
   end

@@ -28,11 +28,12 @@ class Person < Nameable
     rental = Rental.new(date, book, self)
     @rentals << rental
   end
-  
+
   def create_object
     object_data = { age: @age, name: @name, id: @id }
     @object_data = object_data
   end
+
   private
 
   def of_age?

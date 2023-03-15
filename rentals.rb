@@ -15,7 +15,7 @@ class Rentals
   def select_book(books)
     puts 'Select a book from the following list by number '
     books.each_with_index do |book, index|
-      puts "\e[34m#{index + 1}. #{BookList.new().show_book(book)}\e[0m"
+      puts "\e[34m#{index + 1}. #{BookList.new.show_book(book)}\e[0m"
     end
     book_idx = gets.chomp.to_i - 1
     books[book_idx]
@@ -24,7 +24,7 @@ class Rentals
   def select_person(people)
     puts 'Select a person from the following list by number (not id) '
     people.each_with_index do |person, index|
-      puts "\e[34m#{index + 1}. #{People.new().show_person(person)} \e[0m"
+      puts "\e[34m#{index + 1}. #{People.new.show_person(person)} \e[0m"
     end
     person_idx = gets.chomp.to_i - 1
     people[person_idx]
@@ -33,12 +33,12 @@ class Rentals
   def show_rentals(people, rentals)
     print 'ID of person: '
     person_id = gets.chomp.to_i
-    selected_person = people.select {|person| person.id == person_id}      
+    selected_person = people.select { |person| person.id == person_id }
     if rentals.empty?
       puts "\e[31mNo rentals found for this person. Please try again.\e[0m"
-    else      
-      puts 'Rentals: '      
-      if person_id == 0
+    else
+      puts 'Rentals: '
+      if person_id.zero?
         rentals.each do |rental|
           puts "\e[34mDate: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}\e[0m"
         end
@@ -47,7 +47,7 @@ class Rentals
           if rental.person == selected_person[0]
             puts "\e[34mDate: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}\e[0m"
           end
-        end      
+        end
       end
     end
   end

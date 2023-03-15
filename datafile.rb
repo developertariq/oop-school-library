@@ -5,6 +5,7 @@ class DataFile
     @path = "store/#{file_name}.json"
     File.write(@path, '[]') unless File.file?(@path)
   end
+
   def save_data(data)
     json = JSON.generate(data)
     File.write(@path, json)
