@@ -1,6 +1,7 @@
 require_relative 'nameable'
 require_relative 'capitalize'
 require_relative 'trimmer'
+require_relative './rental'
 
 class Person < Nameable
   attr_accessor :name, :age, :rentals
@@ -27,7 +28,11 @@ class Person < Nameable
     rental = Rental.new(date, book, self)
     @rentals << rental
   end
-
+  
+  def create_object
+    object_data = { age: @age, name: @name, id: @id }
+    @object_data = object_data
+  end
   private
 
   def of_age?
@@ -35,6 +40,6 @@ class Person < Nameable
   end
 
   def generate_id
-    rand(100..999)
+    Random.rand(100..999)
   end
 end
