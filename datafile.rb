@@ -15,4 +15,3 @@ class DataFile
     JSON.parse(data)
   end
 end
-end

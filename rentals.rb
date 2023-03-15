@@ -29,4 +29,26 @@ class Rentals
     person_idx = gets.chomp.to_i - 1
     people[person_idx]
   end
+
+  def show_rentals(people, rentals)
+    print 'ID of person: '
+    person_id = gets.chomp.to_i
+    selected_person = people.select {|person| person.id == person_id}      
+    if rentals.empty?
+      puts "\e[31mNo rentals found for this person. Please try again.\e[0m"
+    else      
+      puts 'Rentals: '      
+      if person_id == 0
+        rentals.each do |rental|
+          puts "\e[34mDate: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}\e[0m"
+        end
+      else
+        rentals.each do |rental|
+          if rental.person == selected_person[0]
+            puts "\e[34mDate: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}\e[0m"
+          end
+        end      
+      end
+    end
+  end
 end
