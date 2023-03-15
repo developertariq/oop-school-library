@@ -10,7 +10,6 @@ require_relative './teacher'
 require 'json'
 
 class App
-
   def run_command(option)
     case option
     when 1
