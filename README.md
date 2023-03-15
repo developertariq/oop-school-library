@@ -130,6 +130,12 @@ To run tests, run the following command:
 - LinkedIn: [@developer-tariq](www.linkedin.com/in/developer-tariq)
 - Twitter: [@developer_tariq](https://twitter.com/developer_tariq)
 
+👤 **Tekhlay**
+
+- GitHub: [@Tekhlay](https://github.com/Tekhlay)
+- Twitter: [@Tekhlay](https://twitter.com/Tekhlayb12)
+- LinkedIn: [Tekhlay](https://linkedin.com/in/tekhlay)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
@@ -144,7 +150,7 @@ To run tests, run the following command:
 
 ## 🤝 Contributing <a name="contributing"></a>
 
-If you spot any bugs or issues in this activity, you can [open an issue with your proposed change](../../issues/).
+If you spot any bugs or issues in this activity, you can [open an issue with your proposed change](../../../issues/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
