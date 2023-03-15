@@ -10,6 +10,27 @@ require_relative './teacher'
 require 'json'
 
 class App
+  attr_accessor :books, :people, :rentals
+
+  def initialize
+    @books_file_path = DataFile.new('books')
+    @people_file_path = DataFile.new('people')
+    @rentals_file_path = DataFile.new('rentals')
+
+    @books = @books_file_path.load_data.map { |book| Book.new(book['title'], book['author']) }
+    @people = @people_file_path.load_data.map do |person|
+      if person['class'].include?('Student')
+        Student.new(person['age'], person['name'], parent_permission: person['parent_permission'], classroom: person['classroom'])
+      else
+        Teacher.new(person['age'], person['name'], parent_permission: person['parent_permission'], specialization: person['specialization'])
+      end
+    end
+    @rentals = @rentals_file_path.load_data.map do |rental|
+      book = @books.select { |bk| bk.title == rental['book']['title'] && bk.author == rental['book']['author'] }[0]
+      person = @people.select { |pers| pers.name == rental['person']['name'] && pers.age = rental['person']['age'] }[0]
+      Rental.new(rental['date'], book, person)
+    end
+  end
   def run_command(option)
     case option
     when 1
