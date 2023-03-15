@@ -150,7 +150,7 @@ To run tests, run the following command:
 
 ## 🤝 Contributing <a name="contributing"></a>
 
-If you spot any bugs or issues in this activity, you can [open an issue with your proposed change](../issues/).
+If you spot any bugs or issues in this activity, you can [open an issue with your proposed change](../../../issues/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
