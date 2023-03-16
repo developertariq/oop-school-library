@@ -36,8 +36,7 @@ RSpec.describe BookList do
       it 'prints the list of books' do
         expect do
           book_list.show_book_list(books)
-        end.to output("\e[34mTitle: \"Harry Potter\", Author: J.K. Rowling \e[0m\n\e[34mTitle:
-          \"The Lord of the Rings\", Author: J.R.R. Tolkien \e[0m\n").to_stdout
+        end.to output("\e[34mTitle: \"Harry Potter\", Author: J.K. Rowling \e[0m\n\e[34mTitle: \"The Lord of the Rings\", Author: J.R.R. Tolkien \e[0m\n").to_stdout
       end
     end
   end
