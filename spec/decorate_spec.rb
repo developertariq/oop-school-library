@@ -17,7 +17,7 @@ describe Decorator do
     expect(@capitalize.correct_name).to eq 'Maximilianus'
   end
 
-    it 'shoud display the correct name of person after trimming' do
+  it 'shoud display the correct name of person after trimming' do
     expect(@trimmer.correct_name).to eq 'Maximilian'
   end
 
