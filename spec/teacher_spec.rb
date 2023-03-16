@@ -5,7 +5,7 @@ describe Teacher do
     age = 32
     name = 'Tekhlay'
     specialization = 'JavaScript'
-    teacher = Teacher.new(age, specialization, name)
+    teacher = Teacher.new(age, name, specialization: specialization)
     it 'if is instance of class' do
       expect(teacher.instance_of?(Teacher)) == true
     end
@@ -16,7 +16,7 @@ describe Teacher do
       expect(teacher.name).to eq 'Tekhlay'
     end
     it 'if there are right specialization' do
-      expect(teacher.specialization).to eq 'JavaScript'
+      expect(teacher.specialization).to eql('JavaScript')
     end
     it 'if can rent a book' do
       expect(teacher.can_use_services?).to eq true

@@ -7,7 +7,7 @@ describe Student do
     name = 'Tekhlay'
     classroom = 'JavaScript'
     parent_permission = true
-    student = Student.new(age, name, parent_permission, classroom)
+    student = Student.new(age, name, parent_permission: parent_permission, classroom: classroom)
     it 'if is an istance of class' do
       expect(student).to be_an_instance_of(Student)
     end
@@ -21,7 +21,7 @@ describe Student do
       expect(student.classroom).to eql('JavaScript')
     end
     it 'if it plays hooky ¯\(ツ)/¯' do
-      expect(student.play_hooky).to eql('¯(ツ)/¯')
+      expect(student.play_hooky).to eql('¯\\_(ツ)_/¯')
     end
   end
 end
