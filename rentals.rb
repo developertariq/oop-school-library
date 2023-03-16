@@ -1,7 +1,21 @@
 class Rentals
   def add_new_rental(books, people, rentals)
-    book = select_book(books)
-    person = select_person(people)
+    # book = select_book(books)
+    # person = select_person(people)
+    puts 'Select a book from the following list by number '
+    books.each_with_index do |book, index|
+      puts "\e[34m#{index + 1}. #{BookList.new.show_book(book)}\e[0m"
+    end
+    book_idx = gets.chomp.to_i - 1
+    book = books[book_idx]
+
+    puts 'Select a person from the following list by number (not id) '
+    people.each_with_index do |person, index|
+      puts "\e[34m#{index + 1}. #{People.new.show_person(person)} \e[0m"
+    end
+    person_idx = gets.chomp.to_i - 1
+    person = people[person_idx]
+
     if person && book
       print 'Date: '
       date = gets.chomp.to_s
@@ -44,9 +58,7 @@ class Rentals
         end
       else
         rentals.each do |rental|
-          if rental.person == selected_person[0]
-            puts "\e[34mDate: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}\e[0m"
-          end
+          puts "\e[34mDate: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}\e[0m" if rental.person == selected_person[0]
         end
       end
     end
