@@ -1,16 +1,28 @@
-require_relative '../nameable'
-require_relative '../decorate'
+require_relative '../trimmer'
+require_relative '../capitalize'
 require_relative '../person'
 
-RSpec.describe Decorator do
-  describe '#correct_name' do
-    context 'Test for Decorator class' do
-      let(:nameable) { double('nameable', correct_name: 'john smith') }
-      let(:decorator) { Decorator.new(nameable) }
+describe Decorator do
+  before :each do
+    @person = Person.new(32, 'maximilianus', parent_permission: false)
+    @capitalize = CapitalizeDecorator.new(@person)
+    @trimmer = TrimmerDecorator.new(@capitalize)
+  end
 
-      it 'returns the correct name of the decorated object' do
-        expect(decorator.correct_name).to eq('john smith')
-      end
-    end
+  it 'shoud display the correct name of person' do
+    expect(@person.correct_name).to eq 'maximilianus'
+  end
+
+  it 'shoud display the correct name of person after capitalizing' do
+    expect(@capitalize.correct_name).to eq 'Maximilianus'
+  end
+
+  it 'shoud display the correct name of person after trimming' do
+    expect(@trimmer.correct_name).to eq 'Maximilian'
+  end
+
+  it 'should displays slice of the name if it is more than 10 char' do
+    expect(@trimmer.correct_name).to eq 'Maximilian'
+    expect(@trimmer.correct_name.length).to be <= 10
   end
 end
