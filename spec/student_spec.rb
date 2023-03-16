@@ -21,7 +21,7 @@ describe Student do
       expect(student.classroom).to eql('JavaScript')
     end
     it 'if it plays hooky ¯\(ツ)/¯' do
-      expect(student.play_hooky).to eql("¯\(ツ)/¯")
+      expect(student.play_hooky).to eql('¯(ツ)/¯')
     end
   end
 end
