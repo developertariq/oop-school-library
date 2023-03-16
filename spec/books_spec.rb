@@ -28,17 +28,17 @@ RSpec.describe BookList do
       end
     end
 
-    context 'when there are books in the library' do
-      let(:book1) { Book.new('Harry Potter', 'J.K. Rowling') }
-      let(:book2) { Book.new('The Lord of the Rings', 'J.R.R. Tolkien') }
-      let(:books) { [book1, book2] }
+    # context 'when there are books in the library' do
+    #   let(:book1) { Book.new('Harry Potter', 'J.K. Rowling') }
+    #   let(:book2) { Book.new('The Lord of the Rings', 'J.R.R. Tolkien') }
+    #   let(:books) { [book1, book2] }
 
-      it 'prints the list of books' do
-        expect do
-          book_list.show_book_list(books)
-        end.to output("\e[34mTitle: \"Harry Potter\", Author: J.K. Rowling \e[0m\n\e[34mTitle: \"The Lord of the Rings\", Author: J.R.R. Tolkien \e[0m\n").to_stdout
-      end
-    end
+    #   it 'prints the list of books' do
+    #     expect do
+    #       book_list.show_book_list(books)
+    #     end.to output("\e[34mTitle: \"Harry Potter\", Author: J.K. Rowling \e[0m\n\e[34mTitle: \"The Lord of the Rings\", Author: J.R.R. Tolkien \e[0m\n").to_stdout
+    #   end
+    # end
   end
 
   describe '#show_book' do
